@@ -19,22 +19,25 @@ const app = express();
 const server = http.createServer(app);
 const io = socketIo(server, {
   cors: {
-    origin: process.env.NODE_ENV === "production"
-      ? ["https://ecommecrce-full.vercel.app"]
-      : ["http://localhost:3000", "http://localhost:3001"],
+    origin: [
+      "http://localhost:3000",
+      "http://localhost:3001",
+      "https://ecommecrce-full.vercel.app",
+    ],
     methods: ["GET", "POST"],
     credentials: true,
   },
 });
-const PORT = process.env.PORT || 5000;
+const PORT = 5000;
 
 const corsOptions = {
-  origin: process.env.NODE_ENV === "production"
-    ? ["https://ecommecrce-full.vercel.app"]
-    : ["http://localhost:3000", "http://localhost:3001"],
+  origin: [
+    "http://localhost:3000",
+    "http://localhost:3001",
+    "https://ecommecrce-full.vercel.app",
+  ],
   credentials: true,
 };
-
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, "public")));
 app.use("/images", express.static(path.join(__dirname, "images")));
@@ -43,8 +46,7 @@ app.use(cors(corsOptions));
 
 mongoose
   .connect(
-    process.env.MONGO_URI || "mongodb+srv://thinhmx:admin@cluster0.eksxo77.mongodb.net/ecommerce?retryWrites=true&w=majority&appName=Cluster0",
-    { useNewUrlParser: true, useUnifiedTopology: true }
+    "mongodb+srv://thinhmx:admin@cluster0.eksxo77.mongodb.net/ecommerce?retryWrites=true&w=majority&appName=Cluster0"
   )
   .then(() => {
     console.log("Connected to MongoDB");
