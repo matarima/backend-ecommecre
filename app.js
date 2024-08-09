@@ -23,6 +23,7 @@ const io = socketIo(server, {
       "http://localhost:3000",
       "http://localhost:3001",
       "https://ecommecrce-full.vercel.app",
+      "https://ecommecrce-full-admin.vercel.app"
     ],
     methods: ["GET", "POST"],
     credentials: true,
@@ -35,6 +36,7 @@ const corsOptions = {
     "http://localhost:3000",
     "http://localhost:3001",
     "https://ecommecrce-full.vercel.app",
+    "https://ecommecrce-full-admin.vercel.app"
   ],
   credentials: true,
 };
